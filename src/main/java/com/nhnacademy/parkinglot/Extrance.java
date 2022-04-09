@@ -1,10 +1,9 @@
 package com.nhnacademy.parkinglot;
 
-import com.nhnacademy.parkinglot.exception.InvalidInputException;
-
 public class Extrance {
-    public int scan(Car car){
 
-        return car.getNumber();
+    public Car scan(int number){
+        return new Car(number);
     }
+
 }
