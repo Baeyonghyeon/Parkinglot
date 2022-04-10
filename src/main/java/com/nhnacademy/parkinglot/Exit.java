@@ -9,13 +9,15 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
 public class Exit {
-
     ParkingSystem parkingSystem = new ParkingSystem();
+    private static final long HOUR = 86400;
+    private static final long FOURHOUR = 14400;
+    private static final long HALFHOUR = 1800;
 
     public long parkingFee(long parkingTimeSeconds, Car car) {
 
-        long days = parkingTimeSeconds / 86400;
-        long seconds = (parkingTimeSeconds % 86400) - 1800;
+        long days = parkingTimeSeconds / HOUR;
+        long seconds = (parkingTimeSeconds % HOUR) - HALFHOUR;
         long dayFee = days * 15000;
         long secFee = 1000;
 
@@ -25,19 +27,19 @@ public class Exit {
             return 0;
         }
 
-        if((seconds - 1800) % 600 == 0){
-            secFee += ((seconds - 1800) / 600) * 500;
+        if((seconds - HALFHOUR) % 600 == 0){
+            secFee += ((seconds - HALFHOUR) / 600) * 500;
         }
 
-        if((seconds - 1800) % 600 != 0){
-            secFee += (((seconds - 1800) / 600)+1) * 500;
+        if((seconds - HALFHOUR) % 600 != 0){
+            secFee += (((seconds - HALFHOUR) / 600)+1) * 500;
         }
 
-        if(seconds <= 1800){
+        if(seconds <= HALFHOUR){
             secFee = 1000;
         }
 
-        if (seconds > 14400){
+        if (seconds > FOURHOUR){
             secFee = 15000;
         }
 
