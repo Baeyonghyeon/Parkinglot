@@ -7,12 +7,16 @@ import java.time.temporal.ChronoUnit;
 
 public class Exit {
 
-    public long pay(long parkingTimeSeconds) {
+    public long parkingFee(long parkingTimeSeconds) {
 
         long days = parkingTimeSeconds / 86400;
-        long seconds = parkingTimeSeconds % 86400;
-        long dayFee = days * 10000;
+        long seconds = (parkingTimeSeconds % 86400) - 1800;
+        long dayFee = days * 15000;
         long secFee = 1000;
+
+        if(seconds <= 0){
+            return 0;
+        }
 
         if((seconds - 1800) % 600 == 0){
             secFee += ((seconds - 1800) / 600) * 500;
@@ -22,11 +26,12 @@ public class Exit {
             secFee += (((seconds - 1800) / 600)+1) * 500;
         }
 
-        if(seconds <= 1800){
+        if(seconds < 1800){
             secFee = 1000;
         }
-        if (seconds > 12600){
-            secFee = 10000;
+
+        if (seconds > 14400){
+            secFee = 15000;
         }
 
         return dayFee + secFee;

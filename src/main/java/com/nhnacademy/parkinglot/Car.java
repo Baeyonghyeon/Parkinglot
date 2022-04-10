@@ -9,16 +9,24 @@ public class Car {
     int number;
     LocalDateTime parkingStartTime;
     BigDecimal amount;
+    Segment segment;
 
     public Car(int number) {
         this.number = number;
         this.parkingStartTime = LocalDateTime.now();
     }
 
+    public Car(int number, Segment segment) {
+        this.number = number;
+        this.parkingStartTime = LocalDateTime.now();
+        this.segment = segment;
+    }
+
     public Car(int number, LocalDateTime localDateTime) {
         this.number = number;
         this.parkingStartTime = localDateTime;
     }
+
 
     public LocalDateTime getParkingStartTime() {
         return parkingStartTime;

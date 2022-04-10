@@ -1,6 +1,6 @@
 package com.nhnacademy.parkinglot;
 
-public class Extrance {
+public class Entrance {
 
     public Car scan(int number){
         return new Car(number);
